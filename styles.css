@@ -74,9 +74,8 @@ body.is-footer .frame { border-color: var(--off-black); }
   top: var(--border);
   z-index: 0;
   width: 100%;
-  /* First screen is the hero alone (fills the window inside the border); the copy and logo scroll up over it */
-  height: calc(100vh - 2 * var(--border));
-  height: calc(100svh - 2 * var(--border));
+  aspect-ratio: 1400 / 600;
+  max-height: 75vh;
   overflow: hidden;
   background: var(--off-black);
 }
@@ -105,7 +104,14 @@ body.is-footer .frame { border-color: var(--off-black); }
 }
 
 /* ---------- Intro copy ---------- */
-.intro { margin-top: 0; }
+/* The first screen is hero + copy + Order Ahead: the intro grows to fill what the hero leaves,
+   so the animated logo starts just below the fold. */
+.intro {
+  margin-top: 0;
+  --hero-h: min(calc((100vw - 2 * var(--border)) * 600 / 1400), 75vh);
+  min-height: calc(100vh - 2 * var(--border) - var(--hero-h) - 120px);
+  min-height: calc(100svh - 2 * var(--border) - var(--hero-h) - 120px);
+}
 
 .intro p {
   margin: 0 0 1.05em;
@@ -412,6 +418,11 @@ body.is-footer .frame { border-color: var(--off-black); }
   .site-footer { grid-template-columns: minmax(48px, 84px) minmax(0, 1fr); column-gap: 12px; }
 }
 
+
+@media (max-width: 900px) {
+  .hero { aspect-ratio: 4 / 3; }
+  .intro { --hero-h: min(calc((100vw - 2 * var(--border)) * 3 / 4), 75vh); }
+}
 
 /* ============================================================
    Information page
