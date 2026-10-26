@@ -74,8 +74,9 @@ body.is-footer .frame { border-color: var(--off-black); }
   top: var(--border);
   z-index: 0;
   width: 100%;
-  aspect-ratio: 1400 / 600;
-  max-height: 75vh;
+  /* First screen is the hero alone (fills the window inside the border); the copy and logo scroll up over it */
+  height: calc(100vh - 2 * var(--border));
+  height: calc(100svh - 2 * var(--border));
   overflow: hidden;
   background: var(--off-black);
 }
@@ -411,9 +412,6 @@ body.is-footer .frame { border-color: var(--off-black); }
   .site-footer { grid-template-columns: minmax(48px, 84px) minmax(0, 1fr); column-gap: 12px; }
 }
 
-@media (max-width: 900px) {
-  .hero { aspect-ratio: 4 / 3; }
-}
 
 /* ============================================================
    Information page
@@ -785,7 +783,6 @@ body.is-footer .frame { border-color: var(--off-black); }
 .c-addr-l, .c-addr-r { grid-row: 3; }
 .c-intro-l, .c-phone-l, .c-addr-l { grid-column: 1; }
 .c-intro-r, .c-phone-r, .c-addr-r { grid-column: 2; }
-.contact .c-addr-r p + p { margin-top: 0; }
 .c-come { grid-column: 1 / 3; grid-row: 4; max-width: 927px; margin-top: 0; }
 
 /* Lettering + social links (the lettering starts 60px below the "come by" line) */
@@ -886,7 +883,6 @@ body.is-footer .frame { border-color: var(--off-black); }
   .cform__field--message,
   .cform__actions { grid-column: 1; grid-row: auto; }
   .cform__title { padding-top: 0; margin-bottom: 4px; }
-  .contact .c-addr-r p + p { margin-top: 24px; }
   .cform__actions { flex-wrap: wrap; }
 }
 
